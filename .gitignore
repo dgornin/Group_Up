@@ -1,0 +1,6 @@
+### PyCharm ###
+venv
+.venv
+
+### OSX ###
+.DS_Store
