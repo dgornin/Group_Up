@@ -25,6 +25,7 @@ urlpatterns = [
     path('dev/', controller.dev, name='dev'),
 
     path('group/', include('mainapp.urls', namespace='group')),
+    path('auth/', include('authapp.urls', namespace='auth')),
 
     path('admin/', admin.site.urls, name='admin'),
 ]
