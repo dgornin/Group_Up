@@ -224,3 +224,185 @@ a {
     text-transform: uppercase;
     letter-spacing: 0.6px;
 }
+
+.auth_forms {
+    display: flex;
+    justify-content: center;
+}
+
+.register_form {
+    width: 500px;
+    margin: 50px;
+    background-color: #f7f7f7;
+}
+
+.register_form h3 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 26px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.register_form form p {
+    display: flex;
+    flex-direction: column;
+}
+
+.register_form form p label {
+    display: block;
+    margin: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+}
+
+.register_form form p input {
+    height: 48px;
+    border: 1px solid #d9dee1;
+    color: #6c6c6c;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding-left: 20px;
+    margin: 8px;
+}
+
+.errorlist {
+    margin: 8px;
+}
+
+.errorlist li{
+    list-style-type: none;
+    color: #e53935;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 48px;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.auth_submit_block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.auth_forms_submit_button {
+    text-align: center;
+    color: #212121;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    letter-spacing: 3.6px;
+    width: 300px;
+}
+
+.auth_forms_submit_button:hover{
+    background-color: #d9dee1;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.auth_forms_submit_button:active{
+    position: relative;
+    top: 2px;
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.login_form {
+    width: 500px;
+    margin: 50px;
+    background-color: #f7f7f7;
+}
+
+.login_form h3 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 26px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.login_form form p {
+    display: flex;
+    flex-direction: column;
+}
+
+.login_form form p label {
+    display: block;
+    margin: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+}
+
+.login_form form p input {
+    height: 48px;
+    border: 1px solid #d9dee1;
+    color: #6c6c6c;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding-left: 20px;
+    margin: 8px;
+}
+
+.edit_form {
+    width: 500px;
+    margin: 50px;
+    background-color: #f7f7f7;
+}
+
+.edit_form h3 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 26px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.edit_form form p {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit_form form p label {
+    display: block;
+    margin: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+}
+
+.edit_form form p input {
+    height: 48px;
+    border: 1px solid #d9dee1;
+    color: #6c6c6c;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding-left: 20px;
+    margin: 8px;
+}

@@ -2,12 +2,18 @@
 {% load static %}
 
 {% block content %}
-    <form action="{% url 'auth:edit' %}" method="post">
-        {% csrf_token %}
-        {{ update_form.as_p }}
-
-        <p>
-            <input type="submit" value="сохранить">
-        </p>
-    </form>
+    <div class="auth_forms">
+        <div class="edit_form">
+            <h3>Profile changes</h3>
+            <form action="{% url 'auth:edit' %}" method="post">
+                {% csrf_token %}
+                {{ update_form.as_p }}
+                <div class="auth_submit_block">
+                    <p>
+                        <input type="submit" value="EDIT" class="auth_forms_submit_button">
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
