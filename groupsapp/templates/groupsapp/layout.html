@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {{ page_title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,40.." rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+
+</head>
+<body>
+<div class="container">
+    {% block header %}
+    <div class="header">
+        <a href="{% url 'index' %}"><img class="logo" src="{% static 'img/logo.svg' %}" alt="logo"></a>
+        <ul class="menu">
+            <li class="menu-list">
+                <a href="{% url 'index' %}" class="menu-link">Home</a>
+            </li>
+            <li class="menu-list">
+                <a href="{% url 'dev' %}" class="menu-link">Groups</a>
+            </li>
+            <li class="menu-list">
+                <a href="{% url 'dev' %}" class="menu-link">Contact</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="menu-list">
+                    <a href="{% url 'auth:edit' %}" class="menu-link">My profile</a>
+                </li>
+                <li class="menu-list">
+                    <a href="{% url 'auth:logout' %}" class="menu-link">Logout</a>
+                </li>
+            {% else %}
+                <li class="menu-list">
+                    <a href="{% url 'auth:login' %}" class="menu-link">Login</a>
+                </li>
+                <li class="menu-list">
+                    <a href="{% url 'auth:register' %}" class="menu-link">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endblock %}
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    {% block footer %}
+    <div class="footer">
+        <div class="footer_up">
+            <div class="footer_contact">
+                <h6>CONTACT US</h6>
+                <p>QJJR+3R Central Administrative Okrug, Moscow</p>
+                <p>Talk to us on +7(123)456-78-90 info@info.com</p>
+            </div>
+            <div class="footer_useful_info">
+                <h6>USEFUL INFORMATION</h6>
+                <div class="footer_useful_info_block">
+                    <div class="footer_useful_info_links">
+                        <a href="{% url 'dev' %}">About Us</a>
+                        <a href="{% url 'dev' %}">API</a>
+                        <a href="{% url 'dev' %}">Documentation</a>
+                    </div>
+                    <div class="footer_useful_info_links">
+                        <a href="{% url 'dev' %}" target="_blank">Trello</a>
+                        <a href="{% url 'dev' %}" target="_blank">Github</a>
+                        <a href="{% url 'dev' %}" target="_blank">Seo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_touch_email">
+                <h6>LET’S STAY IN TOUCH!</h6>
+                <p>Subscribe to know about our latest news, products and special offers just for subscribers</p>
+                <label>
+                    <input type="email" class="footer_touch_email_input" placeholder="your email address">
+                </label>
+            </div>
+        </div>
+        <div class="footer_down">
+            <p>© Copyright - GROUP UP 2019. All Rights Reserved.</p>
+            <div style="display: flex">
+                <a href="{% url 'dev' %}" target="_blank"><img src="{% static 'img/facebook_link_logo.png' %}" alt="facebook logo"></a>
+                <a href="{% url 'dev' %}" target="_blank"><img src="{% static 'img/twitter_link_logo.png' %}" alt="twitter logo"></a>
+                <a href="{% url 'dev' %}" target="_blank"><img src="{% static 'img/google_link_logo.png' %}" alt="google logo"></a>
+                <a href="{% url 'dev' %}" target="_blank"><img src="{% static 'img/patreon_link_logo.png' %}" alt="patreon logo"></a>
+            </div>
+            <a href="{% url 'dev' %}" class="footer_down_privacy_link">TERMS & CONDITIONS / PRIVACY POLICY & COOKIES</a>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpRequest
-from .models import User, Group
+from .models import User
 
 # Create your views here.
 
@@ -11,12 +11,3 @@ def index(request):
 
 def dev(request):
     return render(request, 'mainapp/dev.html')
-
-
-def all_groups(request):
-    return render(request, 'mainapp/all_groups.html')
-
-
-def group(request, id=None):
-    groups = Group.objects.get(pk=id)
-    return render(request, 'mainapp/group.html')

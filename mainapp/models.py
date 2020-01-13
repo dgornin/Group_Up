@@ -10,6 +10,3 @@ class User(models.Model):
     profile_photo = models.ImageField(upload_to='user_photo', verbose_name='User profile photo')
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Group name')
-    profile_photo = models.ImageField(upload_to='group_photo', verbose_name='Group profile photo')

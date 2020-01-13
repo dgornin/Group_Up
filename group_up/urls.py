@@ -24,6 +24,7 @@ urlpatterns = [
     path('', controller.index, name='index'),
     path('dev/', controller.dev, name='dev'),
 
+    path('groups/', include('groupsapp.urls', namespace='groups')),
     path('group/', include('mainapp.urls', namespace='group')),
     path('auth/', include('authapp.urls', namespace='auth')),
 
