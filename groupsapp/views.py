@@ -30,5 +30,15 @@ def index(request: HttpRequest):
 
 
 def group(request: HttpRequest, id: int):
-    return render(request, 'groupsapp/group.html')
+    group = get_object_or_404(Group, pk=id)
+    available_groups = get_object_or_404(Available, groups=id)
+    a = 123
+    a = type(a)
+    context = {
+        'group': group,
+        'available': available_groups,
+        'a': a,
+    }
+
+    return render(request, 'groupsapp/group.html', context)
 

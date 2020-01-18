@@ -3,6 +3,12 @@
 
 {% block content %}
     <div class="pass">
-        group id is
+        a
+    {{ available.user }}
+    {{ request.user.username }}
+    {{  }}
+        {% if available.user is request.user.username %}
+            {{ group.name }}
+        {% endif %}
     </div>
 {% endblock %}
