@@ -2,7 +2,16 @@
 {% load static %}
 
 {% block content %}
-    <div class="pass">
-        all groups
+    <div class="catalog_groups">
+        <ul style="list-style-type: none">
+        {% for i in group %}
+            <a href="{% url "index" %}" class="catalog_group">
+                <li>
+                    <h4>{{ i.groups.name }}</h4>
+                    <p>{{ i.groups.short_desc }}</p>
+                </li>
+            </a>
+        {% endfor %}
+        </ul>
     </div>
 {% endblock %}

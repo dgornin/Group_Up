@@ -406,3 +406,315 @@ a {
     padding-left: 20px;
     margin: 8px;
 }
+
+.catalog_groups {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.catalog_group {
+    display: inline-block;
+    text-align: center;
+    height: 400px;
+    width: 300px;
+    margin: 35px;
+    background-color: #8b8b8b;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 25px;
+}
+
+.catalog_group:hover {
+    opacity: 0.6;
+    background-color: #d9dee1;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.catalog_group:active {
+    position: relative;
+    top: 2px;
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.catalog_group h4 {
+    font-size: 25px;
+    margin: 10px;
+    color: #212121;
+    text-transform: uppercase;
+}
+
+.catalog_group p {
+    font-size: 15px;
+    margin: 10px;
+    color: #212121;
+    text-transform: uppercase;
+}
+
+.main_group {
+    display: flex;
+    width: 1166px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.group_info {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #f7f7f7;
+}
+
+.main_group_info {
+    display: flex;
+    height: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.main_group_photo {
+    height: 100px;
+    width: 100px;
+    color: #6c6c6c;
+    margin-left: 10px;
+}
+
+.main_group_name {
+    margin-left: 15px;
+    font-size: 23px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.del_line {
+    height: 5px;
+    width: 400px;
+    background-color: #ffffff;
+}
+
+.main_group_description {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.main_group_description h4 {
+    color: #212121;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.main_group_description p {
+    color: #212121;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.main_group_buttons {
+    width: 400px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.main_group_button {
+    color: #212121;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    letter-spacing: 3.6px;
+    width: 300px;
+}
+
+.main_group_button:hover {
+    background-color: #d9dee1;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.main_group_button:active {
+    position: relative;
+    top: 2px;
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.group_tasks {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    background-color: #f7f7f7;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.group_users {
+    display: flex;
+    flex-direction: column;
+    width: 176px;
+    background-color: #f7f7f7;
+    margin: 20px;
+    padding: 10px;
+}
+
+.group_users h3 {
+    font-size: 20px;
+    margin: 10px;
+    color: #212121;
+    text-transform: uppercase;
+}
+
+.group_user {
+    display: flex;
+    height: 40px;
+    padding: 3px;
+}
+
+.group_user:hover {
+    background-color: #d9dee1;
+}
+
+.user_photo {
+    height: 40px;
+    width: 40px;
+    background-color: #6c6c6c;
+    border-radius: 25px;
+}
+
+.user_name {
+    margin-left: 8px;
+    height: 40px;
+}
+
+.user_name p {
+    color: #212121;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.online_dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 9px;
+    background-color: green;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.offline_dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 9px;
+    background-color: red;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.group_tasks h3 {
+    font-size: 20px;
+    margin: 10px;
+    color: #212121;
+    text-transform: uppercase;
+}
+
+.tasks_buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.tasks_button {
+    color: #212121;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    letter-spacing: 3.6px;
+    width: 150px;
+}
+
+.tasks_button:hover {
+    background-color: #d9dee1;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.tasks_button:active {
+    position: relative;
+    top: 2px;
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.active_tasks {
+    display: flex;
+    flex-direction: column;
+}
+
+.active_tasks h4 {
+    font-size: 17px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: #212121;
+    text-transform: uppercase;
+}
+
+.active_task {
+    margin-top: 15px;
+    padding-left: 25px;
+    padding-right:25px;
+    height: 100px;
+    width: 400px;
+    border-radius: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    display: inline-block;
+}
+
+.active_task:hover {
+    background-color: #d9dee1;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.active_task:active {
+    position: relative;
+    top: 2px;
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.active_task_name {
+    font-size: 17px;
+    color: #212121;
+    margin-top: 5px;
+}
+
+.active_task_text {
+    font-size: 15px;
+    color: #212121;
+}

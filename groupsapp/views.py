@@ -26,7 +26,13 @@ def remove_user(request: HttpRequest, id: int):
 
 
 def index(request: HttpRequest):
-    return render(request, 'groupsapp/index.html')
+    group = Available.objects.filter(user=request.user)
+
+    context = {
+        'group': group
+    }
+
+    return render(request, 'groupsapp/index.html', context)
 
 
 def group(request: HttpRequest, id: int):
