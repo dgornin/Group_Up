@@ -711,3 +711,10 @@ a {
     font-size: 15px;
     color: #212121;
 }
+
+.qr_cod {
+    margin-left: 500px;
+    display: block;
+    height: 300px;
+    width: 300px;
+}

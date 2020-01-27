@@ -40,6 +40,7 @@ def group(request: HttpRequest, id: int):
     available_groups = get_object_or_404(Available, groups=id)
     a = 123
     a = type(a)
+
     context = {
         'group': group,
         'available': available_groups,
@@ -48,3 +49,12 @@ def group(request: HttpRequest, id: int):
 
     return render(request, 'groupsapp/group.html', context)
 
+
+def shear(request: HttpRequest, id: int):
+    shear_url = f"http://127.0.0.1:8000/groups/add/{id}"
+
+    context = {
+        'shear_url': shear_url,
+    }
+
+    return render(request, 'groupsapp/shear.html', context)

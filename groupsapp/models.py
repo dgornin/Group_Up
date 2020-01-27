@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+import uuid
 
 # Create your models here.
 
@@ -9,6 +10,7 @@ class Group(models.Model):
     profile_photo = models.ImageField(upload_to='group_photo', verbose_name='Group_profile_photo')
     short_desc = models.CharField(verbose_name='short_description', max_length=60, blank=True)
     description = models.TextField(verbose_name='description', blank=True)
+    uuid = models.UUIDField(verbose_name='uuid', blank=True, default=uuid.uuid4())
 
 
 class Available(models.Model):

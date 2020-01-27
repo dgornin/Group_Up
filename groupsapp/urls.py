@@ -9,4 +9,5 @@ urlpatterns = [
     path('add/<int:id>', controller.add_user, name='add_user'),
     path('remove/<int:id>', controller.remove_user, name='remove_user'),
     path('group/<int:id>', controller.group, name='group'),
+    path('group/shear/<int:id>', controller.shear, name='shear'),
 ]
