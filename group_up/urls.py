@@ -23,6 +23,7 @@ import mainapp.views as controller
 urlpatterns = [
     path('', controller.index, name='index'),
     path('dev/', controller.dev, name='dev'),
+    path('contact/', controller.contact, name='contact'),
 
     path('groups/', include('groupsapp.urls', namespace='groups')),
     path('group/', include('mainapp.urls', namespace='group')),

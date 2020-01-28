@@ -718,3 +718,38 @@ a {
     height: 300px;
     width: 300px;
 }
+
+.pass_text {
+    font-size: 25px;
+    color: #212121;
+}
+
+.pass_button {
+    color: #212121;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 23px;
+    background-color: #ffffff;
+    display: inline-block;
+    letter-spacing: 3.6px;
+    width: 200px;
+}
+
+.pass_button:hover {
+    background-color: #d9dee1;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+}
+
+.pass_button:active {
+    position: relative;
+    top: 2px;
+    box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
+}

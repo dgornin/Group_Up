@@ -2,195 +2,211 @@
 {% load static %}
 
 {% block content %}
-    <div class="main_group">
-        <div class="group_info">
-            <div class="main_group_info">
-                <div class="main_group_photo" style="background-color: #8b8b8b"></div>
-                <div class="main_group_name">
-                    <div>
-                        {{ group.name }}
+    {% if user.is_authenticated and not group %}
+        <div class="pass">
+            <p class="pass_text">You don't have access to this group</p>
+        </div>
+    {% elif user.is_authenticated %}
+        <div class="main_group">
+            <div class="group_info">
+                <div class="main_group_info">
+                    <div class="main_group_photo" style="background-color: #8b8b8b"></div>
+                    <div class="main_group_name">
+                        <div>
+                            {{ group.name }}
+                        </div>
                     </div>
                 </div>
+                <div class="del_line"></div>
+                <div class="main_group_description">
+                    <h4>{{ group.short_desc }}</h4>
+                    <p>{{ group.description }}</p>
+                </div>
+                <div class="del_line"></div>
+                <div class="main_group_buttons">
+                    <a href="" class="main_group_button">add user</a>
+                    <a href="" class="main_group_button">edit group</a>
+                    <a href="" class="main_group_button" style="color: #e53935">leave group</a>
+                </div>
             </div>
-            <div class="del_line"></div>
-            <div class="main_group_description">
-                <h4>{{ group.short_desc }}</h4>
-                <p>{{ group.description }}</p>
+            <div class="group_tasks">
+                <h3>Tasks</h3>
+                <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
+                <div class="tasks_buttons">
+                    <div class="tasks_button">
+                        add task
+                    </div>
+                    <div class="tasks_button">
+                        all tasks
+                    </div>
+                </div>
+                <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
+                <div class="active_tasks">
+                    <h4>Active: 4/10</h4>
+                    <a href="" class="active_task">
+                        <div style="display: flex; height: 30px; justify-content: space-between">
+                            <p class="active_task_name">Lorem ipsum dolor.</p>
+                            <p class="active_task_name">Lorem ipsum.</p>
+                        </div>
+                        <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
+                    </a>
+                    <a href="" class="active_task">
+                        <div style="display: flex; height: 30px; justify-content: space-between">
+                            <p class="active_task_name">Lorem ipsum dolor.</p>
+                            <p class="active_task_name">Lorem ipsum.</p>
+                        </div>
+                        <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
+                    </a>
+                    <a href="" class="active_task">
+                        <div style="display: flex; height: 30px; justify-content: space-between">
+                            <p class="active_task_name">Lorem ipsum dolor.</p>
+                            <p class="active_task_name">Lorem ipsum.</p>
+                        </div>
+                        <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
+                    </a>
+                    <a href="" class="active_task">
+                        <div style="display: flex; height: 30px; justify-content: space-between">
+                            <p class="active_task_name">Lorem ipsum dolor.</p>
+                            <p class="active_task_name">Lorem ipsum.</p>
+                        </div>
+                        <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
+                    </a>
+                </div>
             </div>
-            <div class="del_line"></div>
-            <div class="main_group_buttons">
-                <a href="" class="main_group_button">add user</a>
-                <a href="" class="main_group_button">edit group</a>
-                <a href="" class="main_group_button" style="color: #e53935">leave group</a>
+            <div class="group_users">
+                <h3>Users</h3>
+                <div class="del_line" style="width: 176px; margin-bottom: 10px"></div>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Jason</p>
+                            <div class="online_dot"></div>
+                        </div>
+                        <p>Smith</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Jackson</p>
+                            <div class="online_dot"></div>
+                        </div>
+                        <p>Johnson</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Logan</p>
+                            <div class="online_dot"></div>
+                        </div>
+                        <p>Williams</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Joseph</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Brown</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Jason</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Smith</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Jackson</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Johnson</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Logan</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Williams</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Joseph</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Brown</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Jason</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Smith</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Jackson</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Johnson</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Logan</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Williams</p>
+                    </div>
+                </a>
+                <a href="" class="group_user">
+                    <div class="user_photo"></div>
+                    <div class="user_name">
+                        <div style="display: flex">
+                            <p>Joseph</p>
+                            <div class="offline_dot"></div>
+                        </div>
+                        <p>Brown</p>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="group_tasks">
-            <h3>Tasks</h3>
-            <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
-            <div class="tasks_buttons">
-                <div class="tasks_button">
-                    add task
-                </div>
-                <div class="tasks_button">
-                    all tasks
-                </div>
-            </div>
-            <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
-            <div class="active_tasks">
-                <h4>Active: 4/10</h4>
-                <a href="" class="active_task">
-                    <div style="display: flex; height: 30px; justify-content: space-between">
-                        <p class="active_task_name">Lorem ipsum dolor.</p>
-                        <p class="active_task_name">Lorem ipsum.</p>
-                    </div>
-                    <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
-                </a>
-                <a href="" class="active_task">
-                    <div style="display: flex; height: 30px; justify-content: space-between">
-                        <p class="active_task_name">Lorem ipsum dolor.</p>
-                        <p class="active_task_name">Lorem ipsum.</p>
-                    </div>
-                    <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
-                </a>
-                <a href="" class="active_task">
-                    <div style="display: flex; height: 30px; justify-content: space-between">
-                        <p class="active_task_name">Lorem ipsum dolor.</p>
-                        <p class="active_task_name">Lorem ipsum.</p>
-                    </div>
-                    <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
-                </a>
-                <a href="" class="active_task">
-                    <div style="display: flex; height: 30px; justify-content: space-between">
-                        <p class="active_task_name">Lorem ipsum dolor.</p>
-                        <p class="active_task_name">Lorem ipsum.</p>
-                    </div>
-                    <p class="active_task_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus eveniet in mollitia nulla reiciendis, sunt...</p>
-                </a>
+    {% else %}
+        <div class="pass">
+            <div class="pass">
+            <p class="pass_text">You must login or register to get access to group</p>
+            <div style="display: flex; justify-content: center; margin-top: 20px">
+                <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
+                <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
             </div>
         </div>
-        <div class="group_users">
-            <h3>Users</h3>
-            <div class="del_line" style="width: 176px; margin-bottom: 10px"></div>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Jason</p>
-                        <div class="online_dot"></div>
-                    </div>
-                    <p>Smith</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Jackson</p>
-                        <div class="online_dot"></div>
-                    </div>
-                    <p>Johnson</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Logan</p>
-                        <div class="online_dot"></div>
-                    </div>
-                    <p>Williams</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Joseph</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Brown</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Jason</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Smith</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Jackson</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Johnson</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Logan</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Williams</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Joseph</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Brown</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Jason</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Smith</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Jackson</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Johnson</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Logan</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Williams</p>
-                </div>
-            </a>
-            <a href="" class="group_user">
-                <div class="user_photo"></div>
-                <div class="user_name">
-                    <div style="display: flex">
-                        <p>Joseph</p>
-                        <div class="offline_dot"></div>
-                    </div>
-                    <p>Brown</p>
-                </div>
-            </a>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}

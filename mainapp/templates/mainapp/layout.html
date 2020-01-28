@@ -28,10 +28,10 @@
                 <a href="{% url 'index' %}" class="menu-link menu-link-active">Home</a>
             </li>
             <li class="menu-list">
-                <a href="{% url 'dev' %}" class="menu-link">Groups</a>
+                <a href="{% url 'groups:index' %}" class="menu-link">Groups</a>
             </li>
             <li class="menu-list">
-                <a href="{% url 'dev' %}" class="menu-link">Contact</a>
+                <a href="{% url 'contact' %}" class="menu-link">Contact</a>
             </li>
             {% if user.is_authenticated %}
                 <li class="menu-list">

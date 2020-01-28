@@ -11,12 +11,9 @@ def add_user(request: HttpRequest, id: int):
 
     certain_group = Available.objects.filter(groups__id=id)
 
-    if certain_group:
-        pass
-    else:
-        new_available = Available(user=request.user, groups=group)
-        new_available.quantity += 1
-        new_available.save()
+    new_available = Available(user=request.user, groups=group)
+    new_available.quantity += 1
+    new_available.save()
 
     return HttpResponseRedirect(reverse('groups:index'))
 
@@ -26,7 +23,12 @@ def remove_user(request: HttpRequest, id: int):
 
 
 def index(request: HttpRequest):
-    group = Available.objects.filter(user=request.user)
+    if request.user.is_authenticated:
+        group = Available.objects.filter(user=request.user)
+        if not group:
+            group = False
+    else:
+        group = False
 
     context = {
         'group': group
@@ -36,15 +38,20 @@ def index(request: HttpRequest):
 
 
 def group(request: HttpRequest, id: int):
-    group = get_object_or_404(Group, pk=id)
-    available_groups = get_object_or_404(Available, groups=id)
-    a = 123
-    a = type(a)
+    # available_groups = get_object_or_404(Available, groups=id, user=request.user.id)
+    if request.user.is_authenticated:
+        available_groups = Available.objects.filter(groups=id, user=request.user.id)
+        if not available_groups:
+            group = False
+        else:
+            group = get_object_or_404(Group, pk=id)
+    else:
+        group = False
+        available_groups = False
 
     context = {
         'group': group,
         'available': available_groups,
-        'a': a,
     }
 
     return render(request, 'groupsapp/group.html', context)

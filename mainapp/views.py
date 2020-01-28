@@ -11,3 +11,7 @@ def index(request):
 
 def dev(request):
     return render(request, 'mainapp/dev.html')
+
+
+def contact(request):
+    return render(request, 'mainapp/contact.html')

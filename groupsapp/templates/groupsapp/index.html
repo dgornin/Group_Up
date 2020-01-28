@@ -2,16 +2,33 @@
 {% load static %}
 
 {% block content %}
-    <div class="catalog_groups">
-        <ul style="list-style-type: none">
-        {% for i in group %}
-            <a href="{% url "index" %}" class="catalog_group">
-                <li>
-                    <h4>{{ i.groups.name }}</h4>
-                    <p>{{ i.groups.short_desc }}</p>
-                </li>
-            </a>
-        {% endfor %}
-        </ul>
-    </div>
+    {% if user.is_authenticated and not group %}
+        <div class="pass">
+            <p class="pass_text">You must find group or create your own</p>
+            <div style="display: flex; justify-content: center; margin-top: 20px">
+                <a href="{% url 'dev' %}" class="pass_button">Create group</a>
+            </div>
+        </div>
+    {% elif user.is_authenticated %}
+        <div class="catalog_groups">
+            <ul style="list-style-type: none">
+                {% for i in group %}'
+                    <a href="{% url 'groups:group' id=i.id %}" class="catalog_group">
+                        <li>
+                            <h4>{{ i.groups.name }}</h4>
+                            <p>{{ i.groups.short_desc }}</p>
+                        </li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="pass">
+            <p class="pass_text">You must login or register to use groups</p>
+            <div style="display: flex; justify-content: center; margin-top: 20px">
+                <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
+                <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

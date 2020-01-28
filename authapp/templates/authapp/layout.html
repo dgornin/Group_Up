@@ -28,24 +28,24 @@
                 <a href="{% url 'index' %}" class="menu-link">Home</a>
             </li>
             <li class="menu-list">
-                <a href="{% url 'dev' %}" class="menu-link">Groups</a>
+                <a href="{% url 'groups:index' %}" class="menu-link">Groups</a>
             </li>
             <li class="menu-list">
-                <a href="{% url 'dev' %}" class="menu-link">Contact</a>
+                <a href="{% url 'contact' %}" class="menu-link">Contact</a>
             </li>
             {% if user.is_authenticated %}
                 <li class="menu-list">
-                    <a href="{% url 'auth:edit' %}" class="menu-link">My profile</a>
+                    <a href="{% url 'auth:edit' %}" class="menu-link menu-link-active">My profile</a>
                 </li>
                 <li class="menu-list">
                     <a href="{% url 'auth:logout' %}" class="menu-link">Logout</a>
                 </li>
             {% else %}
                 <li class="menu-list">
-                    <a href="{% url 'auth:login' %}" class="menu-link">Login</a>
+                    <a href="{% url 'auth:login' %}" class="menu-link menu-link-active">Login</a>
                 </li>
                 <li class="menu-list">
-                    <a href="{% url 'auth:register' %}" class="menu-link">Register</a>
+                    <a href="{% url 'auth:register' %}" class="menu-link menu-link-active">Register</a>
                 </li>
             {% endif %}
         </ul>
