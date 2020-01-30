@@ -28,6 +28,7 @@ urlpatterns = [
     path('groups/', include('groupsapp.urls', namespace='groups')),
     path('group/', include('mainapp.urls', namespace='group')),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('shear/', include('shearapp.urls', namespace='shear')),
 
     path('admin/', admin.site.urls, name='admin'),
 ]

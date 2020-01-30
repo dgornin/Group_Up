@@ -1,6 +1,5 @@
 {% extends 'groupsapp/layout.html' %}
 {% load static %}
-
 {% block content %}
     {% if user.is_authenticated and not group %}
         <div class="pass">
@@ -12,8 +11,8 @@
     {% elif user.is_authenticated %}
         <div class="catalog_groups">
             <ul style="list-style-type: none">
-                {% for i in group %}'
-                    <a href="{% url 'groups:group' id=i.id %}" class="catalog_group">
+                {% for i in group %}
+                    <a href="{% url 'groups:group' id=i.id key=i.groups.uuid %}" class="catalog_group">
                         <li>
                             <h4>{{ i.groups.name }}</h4>
                             <p>{{ i.groups.short_desc }}</p>

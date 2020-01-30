@@ -1,0 +1,9 @@
+{% extends 'shearapp/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="pass">
+        {{ shear_url }}
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ shear_url }}" alt="" class="qr_cod">
+    </div>
+{% endblock %}

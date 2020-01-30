@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mainapp',
     'authapp',
     'groupsapp',
+    'shearapp',
 ]
 
 MIDDLEWARE = [

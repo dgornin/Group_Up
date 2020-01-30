@@ -37,14 +37,20 @@ def index(request: HttpRequest):
     return render(request, 'groupsapp/index.html', context)
 
 
-def group(request: HttpRequest, id: int):
+def group(request: HttpRequest, id: int, key: str):
     # available_groups = get_object_or_404(Available, groups=id, user=request.user.id)
+    uuid = True
     if request.user.is_authenticated:
         available_groups = Available.objects.filter(groups=id, user=request.user.id)
         if not available_groups:
             group = False
         else:
             group = get_object_or_404(Group, pk=id)
+            if str(group.uuid) != key:
+                group = False
+                uuid = False
+            else:
+                uuid = group.uuid
     else:
         group = False
         available_groups = False
@@ -52,6 +58,7 @@ def group(request: HttpRequest, id: int):
     context = {
         'group': group,
         'available': available_groups,
+        'uuid': uuid,
     }
 
     return render(request, 'groupsapp/group.html', context)

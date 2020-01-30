@@ -2,7 +2,11 @@
 {% load static %}
 
 {% block content %}
-    {% if user.is_authenticated and not group %}
+    {% if user.is_authenticated and not uuid %}
+        <div class="pass">
+            <p class="pass_text">You don't have access key wos wrong</p>
+        </div>
+    {% elif user.is_authenticated and not group %}
         <div class="pass">
             <p class="pass_text">You don't have access to this group</p>
         </div>
@@ -24,7 +28,7 @@
                 </div>
                 <div class="del_line"></div>
                 <div class="main_group_buttons">
-                    <a href="" class="main_group_button">add user</a>
+                    <a href="{% url 'shear:index' id=group.id key=uuid%}" class="main_group_button">add user</a>
                     <a href="" class="main_group_button">edit group</a>
                     <a href="" class="main_group_button" style="color: #e53935">leave group</a>
                 </div>
