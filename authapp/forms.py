@@ -18,7 +18,7 @@ class LoginForm(AuthenticationForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'age', 'password1', 'password2', 'email', 'first_name')
+        fields = ('username', 'age', 'password1', 'password2', 'email', 'first_name', 'last_name')
 
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
@@ -31,7 +31,7 @@ class RegisterForm(UserCreationForm):
 class UpdateForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'age', 'password', 'email', 'first_name')
+        fields = ('username', 'age', 'password', 'email', 'first_name', 'last_name')
 
     def __init__(self, *args, **kwargs):
         super(UpdateForm, self).__init__(*args, **kwargs)

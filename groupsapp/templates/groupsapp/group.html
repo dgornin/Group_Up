@@ -30,7 +30,7 @@
                 <div class="main_group_buttons">
                     <a href="{% url 'shear:index' id=group.id key=uuid%}" class="main_group_button">add user</a>
                     <a href="" class="main_group_button">edit group</a>
-                    <a href="" class="main_group_button" style="color: #e53935">leave group</a>
+                    <a href="{% url 'groups:remove_user' id=group.id key=uuid%}" class="main_group_button" style="color: #e53935">leave group</a>
                 </div>
             </div>
             <div class="group_tasks">
@@ -80,126 +80,18 @@
             <div class="group_users">
                 <h3>Users</h3>
                 <div class="del_line" style="width: 176px; margin-bottom: 10px"></div>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Jason</p>
-                            <div class="online_dot"></div>
+                {% for i in all_users %}
+                    <a href="" class="group_user">
+                        <div class="user_photo"></div>
+                        <div class="user_name">
+                            <div style="display: flex">
+                                <p>{{ i.user.first_name }}</p>
+                                <div class="online_dot"></div>
+                            </div>
+                            <p>{{ i.user.last_name }}</p>
                         </div>
-                        <p>Smith</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Jackson</p>
-                            <div class="online_dot"></div>
-                        </div>
-                        <p>Johnson</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Logan</p>
-                            <div class="online_dot"></div>
-                        </div>
-                        <p>Williams</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Joseph</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Brown</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Jason</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Smith</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Jackson</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Johnson</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Logan</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Williams</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Joseph</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Brown</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Jason</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Smith</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Jackson</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Johnson</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Logan</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Williams</p>
-                    </div>
-                </a>
-                <a href="" class="group_user">
-                    <div class="user_photo"></div>
-                    <div class="user_name">
-                        <div style="display: flex">
-                            <p>Joseph</p>
-                            <div class="offline_dot"></div>
-                        </div>
-                        <p>Brown</p>
-                    </div>
-                </a>
+                    </a>
+                {% endfor %}
             </div>
         </div>
     {% else %}

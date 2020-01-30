@@ -5,14 +5,17 @@
         <div class="pass">
             <p class="pass_text">You must find group or create your own</p>
             <div style="display: flex; justify-content: center; margin-top: 20px">
-                <a href="{% url 'dev' %}" class="pass_button">Create group</a>
+                <a href="{% url 'groups:new_group' %}" class="pass_button">Create group</a>
             </div>
         </div>
     {% elif user.is_authenticated %}
+        <div style="display: flex; justify-content: center; margin-top: 20px">
+                <a href="{% url 'groups:new_group' %}" class="pass_button">Create group</a>
+        </div>
         <div class="catalog_groups">
             <ul style="list-style-type: none">
                 {% for i in group %}
-                    <a href="{% url 'groups:group' id=i.id key=i.groups.uuid %}" class="catalog_group">
+                    <a href="{% url 'groups:group' id=i.groups.id key=i.groups.uuid %}" class="catalog_group">
                         <li>
                             <h4>{{ i.groups.name }}</h4>
                             <p>{{ i.groups.short_desc }}</p>

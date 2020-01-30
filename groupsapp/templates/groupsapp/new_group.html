@@ -1,0 +1,21 @@
+{% extends 'groupsapp/layout.html' %}
+{% load static %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="pass">
+            <form class="form-horizontal" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ group_form.as_p }}
+            <input class="" type="submit" value="Save">
+            </form>
+        </div>
+    {% else %}
+        <div class="pass">
+            <p class="pass_text">You must login or register to create groups</p>
+            <div style="display: flex; justify-content: center; margin-top: 20px">
+                <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
+                <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
