@@ -82,10 +82,14 @@ def new_group(request: HttpRequest):
     if request.method == 'POST':
         group_form = GroupEditForm(request.POST, request.FILES)
         if group_form.is_valid():
+            data = group_form.cleaned_data.get("uuid")
             group_form.save()
+            able = get_object_or_404(Group, uuid=data)
+            new_available = Available(user=request.user, groups=able)
+            new_available.quantity += 1
+            new_available.save()
             return HttpResponseRedirect(reverse('groups:index'))
     else:
-        # задаем начальное значение категории в форме
         group_form = GroupEditForm()
 
     context = {
