@@ -2,12 +2,19 @@
 {% load static %}
 {% block content %}
     {% if user.is_authenticated %}
-        <div class="pass">
-            <form class="form-horizontal" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ group_form.as_p }}
-            <input class="" type="submit" value="Save">
-            </form>
+        <div class="auth_forms">
+            <div class="edit_form">
+                <h3>Create group</h3>
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ group_form.as_p }}
+                    <div class="auth_submit_block">
+                        <p>
+                            <input class="auth_forms_submit_button" type="submit" value="Save">
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
     {% else %}
         <div class="pass">
