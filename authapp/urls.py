@@ -11,4 +11,5 @@ urlpatterns = [
     path('logout/', controller.logout, name='logout'),
     path('register/', controller.register, name='register'),
     path('edit/', controller.edit, name='edit'),
+    path('profile/<int:id>', controller.profile, name='profile'),
 ]

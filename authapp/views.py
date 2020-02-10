@@ -62,3 +62,12 @@ def edit(request: HttpRequest):
     }
 
     return render(request, 'authapp/edit.html', content)
+
+
+def profile(request: HttpRequest, id: int):
+
+    context = {
+        'page_id': id,
+    }
+
+    return render(request, 'authapp/profile.html', context)
