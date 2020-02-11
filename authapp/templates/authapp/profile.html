@@ -2,7 +2,20 @@
 {% load static %}
 
 {% block content %}
-    <div class="pass">
-        my profile
+    <div class="main_profile">
+        <div class="profile_left_block">
+            <div class="profile_photo" style="background-color: #6c6c6c"></div>
+            <div class="del_line" style="margin-top: 10px"></div>
+        </div>
+        <div class="profile_right_block">
+            <div class="profile_name">
+                <div style="display: flex">
+                    <h4>{{ request.user.first_name }}</h4>
+                    <div class="profile_online_dot"></div>
+                </div>
+                <h4>{{ request.user.last_name }}</h4>
+            </div>
+            <div class="del_line" style="margin-top: 10px; width: 660px"></div>
+        </div>
     </div>
 {% endblock %}
