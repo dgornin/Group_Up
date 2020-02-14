@@ -16,6 +16,21 @@
                 <h4>{{ request.user.last_name }}</h4>
             </div>
             <div class="del_line" style="margin-top: 10px; width: 660px"></div>
+            {% if page_id is request.user.id %}
+            <div class="profile_buttons_block">
+                <a href="" class="profile_button">Edit profile</a>
+                <a href="" class="profile_button">Groups</a>
+                <a href="" class="profile_button">Shear</a>
+            </div>
+            <div class="del_line" style="margin-top: 10px; width: 660px"></div>
+            {% else %}
+            <div class="profile_buttons_block">
+                <a href="" class="profile_button">Subscribe</a>
+                <a href="" class="profile_button">Write</a>
+                <a href="" class="profile_button">Shear</a>
+            </div>
+            <div class="del_line" style="margin-top: 10px; width: 660px"></div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
