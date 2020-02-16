@@ -8,5 +8,3 @@ class User(models.Model):
     last_name = models.CharField(max_length=30, verbose_name='Last name')
     date_of_birth = models.DateField(verbose_name='Date of birth')
     profile_photo = models.ImageField(upload_to='user_photo', verbose_name='User profile photo')
-
-
