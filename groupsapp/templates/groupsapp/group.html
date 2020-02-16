@@ -81,7 +81,7 @@
                 <h3>Users</h3>
                 <div class="del_line" style="width: 176px; margin-bottom: 10px"></div>
                 {% for i in all_users %}
-                    <a href="" class="group_user">
+                    <a href="{% url 'auth:profile' id=i.user.id %}" class="group_user">
                         <div class="user_photo"></div>
                         <div class="user_name">
                             <div style="display: flex">

@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     vk_url = models.URLField(max_length=250, blank=True)
     telegram_url = models.URLField(max_length=250, blank=True)
     instagram_url = models.URLField(max_length=250, blank=True)
-    whatsapp_url = models.URLField(max_length=250, blank=True)
+    facebook_url = models.URLField(max_length=250, blank=True)
 
 
 class UserSubscribe(models.Model):

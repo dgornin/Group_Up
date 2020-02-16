@@ -942,3 +942,15 @@ a {
     box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
 }
 
+.social_media {
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.social_link {
+   height: 50px;
+    width: 50px;
+}

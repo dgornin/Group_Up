@@ -2,35 +2,47 @@
 {% load static %}
 
 {% block content %}
+    {% if user_is_exists %}
     <div class="main_profile">
         <div class="profile_left_block">
             <div class="profile_photo" style="background-color: #6c6c6c"></div>
             <div class="del_line" style="margin-top: 10px"></div>
+            <div class="social_media">
+                <a href="" class="social_link"><img src="{% static 'img/vk_icon.svg' %}" alt=""></a>
+
+            </div>
         </div>
         <div class="profile_right_block">
             <div class="profile_name">
                 <div style="display: flex">
-                    <h4>{{ request.user.first_name }}</h4>
+                    <h4>{{ page_user.first_name }}</h4>
                     <div class="profile_online_dot"></div>
                 </div>
-                <h4>{{ request.user.last_name }}</h4>
+                <h4>{{ page_user.last_name }}</h4>
             </div>
             <div class="del_line" style="margin-top: 10px; width: 660px"></div>
-            {% if page_id is request.user.id %}
+            {% if page_id is request.user.id and user.is_authenticated%}
             <div class="profile_buttons_block">
                 <a href="{% url 'auth:edit' %}" class="profile_button">Edit profile</a>
-                <a href="" class="profile_button">Groups</a>
+                <a href="{% url 'groupsapp:index' %}" class="profile_button">Groups</a>
                 <a href="" class="profile_button">Shear</a>
             </div>
             <div class="del_line" style="margin-top: 10px; width: 660px"></div>
             {% else %}
             <div class="profile_buttons_block">
-                <a href="" class="profile_button">Subscribe</a>
-                <a href="" class="profile_button">Write</a>
+                {% if user.is_authenticated %}
+                    <a href="" class="profile_button">Subscribe</a>
+                    <a href="" class="profile_button">Write</a>
+                {% endif %}
                 <a href="" class="profile_button">Shear</a>
             </div>
             <div class="del_line" style="margin-top: 10px; width: 660px"></div>
             {% endif %}
         </div>
     </div>
+    {% else %}
+    <div class="pass">
+        <h1>user does not exist</h1>
+    </div>
+    {% endif %}
 {% endblock %}

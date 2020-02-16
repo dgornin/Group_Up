@@ -1,8 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http import HttpRequest
 from .forms import LoginForm, RegisterForm, UpdateForm
 from django.contrib import auth
 from django.urls import reverse
+from django.conf import settings
+from authapp.models import CustomUser
 
 
 # Create your views here.
@@ -65,9 +67,17 @@ def edit(request: HttpRequest):
 
 
 def profile(request: HttpRequest, id: int):
+    page_user = CustomUser.objects.filter(id=id)
+    if page_user:
+        page_user = get_object_or_404(CustomUser, id=id)
+        user_is_exists = True
+    else:
+        user_is_exists = False
 
     context = {
+        'user_is_exists': user_is_exists,
         'page_id': id,
+        'page_user': page_user,
     }
 
     return render(request, 'authapp/profile.html', context)

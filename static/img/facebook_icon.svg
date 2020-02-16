@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 56.69 56.69" style="enable-background:new 0 0 56.69 56.69;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:none;stroke:#000000;stroke-width:4;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;}
+</style>
+<polyline id="Rectangle" class="st0" points="7,51 7,7 51,7 "/>
+<path class="st1" d="M29,51C16.85,51,7,41.15,7,29S16.85,7,29,7s22,9.85,22,22"/>
+<path class="st1" d="M51,29c0,12.15-9.85,22-22,22"/>
+<path id="Shape" class="st2" d="M30.31,42h-4.88V30.5H23v-3.96h2.44v-2.38c0-3.23,1.38-5.16,5.29-5.16h3.25v3.96h-2.03
+	c-1.52,0-1.62,0.55-1.62,1.59l-0.01,1.98H34l-0.43,3.96h-3.25L30.31,42L30.31,42z"/>
+</svg>
