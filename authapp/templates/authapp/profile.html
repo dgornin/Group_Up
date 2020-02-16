@@ -8,8 +8,17 @@
             <div class="profile_photo" style="background-color: #6c6c6c"></div>
             <div class="del_line" style="margin-top: 10px"></div>
             <div class="social_media">
-                <a href="" class="social_link"><img src="{% static 'img/vk_icon.svg' %}" alt=""></a>
+                <a href="{{ page_user.vk_url }}" class="social_link" target="_blank"><img src="{% static 'img/vk_icon.svg' %}" alt=""></a>
+                <a href="{{ page_user.instagram_url }}" class="social_link" target="_blank"><img src="{% static 'img/instagram_icon.svg' %}" alt=""></a>
+                <a href="{{ page_user.telegram_url }}" class="social_link" target="_blank"><img src="{% static 'img/telegram_icon.svg' %}" alt=""></a>
+                <a href="{{ page_user.facebook_url }}" class="social_link" target="_blank"><img src="{% static 'img/facebook_icon.svg' %}" alt=""></a>
+            </div>
+            <div class="del_line"></div>
+            <div class="profile_subscribers_block">
+                <p class="profile_subscribers_text">Subscribers:</p>
+                <div class="profile_subscribers">
 
+                </div>
             </div>
         </div>
         <div class="profile_right_block">
@@ -38,6 +47,18 @@
             </div>
             <div class="del_line" style="margin-top: 10px; width: 660px"></div>
             {% endif %}
+            <div class="profile_main_info">
+                <p class="profile_main_info_text">Email: {{ page_user.email }}</p>
+                <p class="profile_main_info_text">Age: {{ page_user.age }}</p>
+                <p class="profile_main_info_text">About me: {{ page_user.about_me }}</p>
+            </div>
+            <div class="del_line" style="width: 660px"></div>
+            <div class="profile_activity">
+                <h4 class="profile_activity_h">Last activity:</h4>
+                <div class="last_profile_activity">
+                    <p class="last_profile_activity_text">User have been registered at {{ page_user.date_joined }} </p>
+                </div>
+            </div>
         </div>
     </div>
     {% else %}

@@ -4,7 +4,7 @@ from .forms import LoginForm, RegisterForm, UpdateForm
 from django.contrib import auth
 from django.urls import reverse
 from django.conf import settings
-from authapp.models import CustomUser
+from authapp.models import CustomUser, UserSubscribe
 
 
 # Create your views here.
@@ -81,3 +81,12 @@ def profile(request: HttpRequest, id: int):
     }
 
     return render(request, 'authapp/profile.html', context)
+
+
+def add_subscribe(request: HttpRequest, id: int):
+    if request.user.is_authenticated:
+        id_sub_user = get_object_or_404(CustomUser, id=id)
+        subscriber = UserSubscribe(user=request.user.id, subscribe=id_sub_user.id)
+        subscriber.save()
+
+    return HttpResponseRedirect(reverse('mainapp:index'))

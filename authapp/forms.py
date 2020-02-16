@@ -31,7 +31,7 @@ class RegisterForm(UserCreationForm):
 class UpdateForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'age', 'password', 'email', 'first_name', 'last_name', 'about_me', 'vk_url', 'telegram_url', 'instagram_url')
+        fields = ('username', 'age', 'password', 'email', 'first_name', 'last_name', 'about_me', 'vk_url', 'telegram_url', 'instagram_url', 'facebook_url')
 
     def __init__(self, *args, **kwargs):
         super(UpdateForm, self).__init__(*args, **kwargs)
