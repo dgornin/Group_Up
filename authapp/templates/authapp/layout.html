@@ -35,7 +35,7 @@
             </li>
             {% if user.is_authenticated %}
                 <li class="menu-list">
-                    <a href="{% url 'auth:edit' %}" class="menu-link menu-link-active">My profile</a>
+                    <a href="{% url 'auth:profile' id=request.user.id %}" class="menu-link menu-link-active">My profile</a>
                 </li>
                 <li class="menu-list">
                     <a href="{% url 'auth:logout' %}" class="menu-link">Logout</a>
