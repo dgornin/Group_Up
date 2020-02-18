@@ -90,3 +90,5 @@ def add_subscribe(request: HttpRequest, id: int):
         subscriber.save()
 
     return HttpResponseRedirect(reverse('mainapp:index'))
+
+

@@ -1,0 +1,15 @@
+{% extends 'groupsapp/layout.html' %}
+
+{% block content %}
+    <div style="height: 500px">
+        <div class="pass">
+            {%for tasks in task%}
+            <table>
+                <tr><td>
+                <h1>Задачи:{{tasks.name}}</h1>
+                </td></tr>
+            </table>
+            {%endfor%}
+        </div>
+    </div>
+{% endblock %}
