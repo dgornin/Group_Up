@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect
 from groupsapp.models import Group, Available , Task
+from mainapp.models import User
 from django.urls import reverse
 from groupsapp.forms import GroupEditForm
 
@@ -103,4 +104,6 @@ def tasks(request):
     context = dict()
     task = Task.objects.all()
     context['task'] = task
+    user = User.objects.all()
+    context['user'] = user
     return render(request, 'groupsapp/task.html', context)
