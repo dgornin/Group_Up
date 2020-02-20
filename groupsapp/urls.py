@@ -10,5 +10,6 @@ urlpatterns = [
     path('remove/<int:id>/<str:key>', controller.remove_user, name='remove_user'),
     path('group/<int:id>/<str:key>', controller.group, name='group'),
     path('new_group/', controller.new_group, name='new_group'),
-    path('task/', controller.tasks, name='task'),
+    path('task/<int:id>/<str:key>', controller.task, name='task'),
+    path('all_tasks/<str:key>', controller.all_tasks, name='all_tasks'),
 ]

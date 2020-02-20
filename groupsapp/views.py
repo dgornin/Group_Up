@@ -99,9 +99,28 @@ def new_group(request: HttpRequest):
     return render(request, 'groupsapp/new_group.html', context)
 
 
-def tasks(request):
+def task(request: HttpRequest, id: int, key: str):
 
     context = {
 
     }
+
     return render(request, 'groupsapp/task.html', context)
+
+
+def all_tasks(request: HttpRequest, key: str):
+    authenticated = False
+    key_is_valid = False
+    if request.user.is_authenticated:
+        authenticated = True
+        group_is = get_object_or_404(Group, uuid=key)
+        user_is = get_object_or_404(Available, groups=group_is.id, user=request.user.id)
+        if group_is and user_is:
+            key_is_valid = True
+
+    context = {
+        'authenticated': authenticated,
+        'key_is_valid': key_is_valid,
+    }
+
+    return render(request, 'groupsapp/all_tasks.html', context)
