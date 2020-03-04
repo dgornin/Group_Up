@@ -4,7 +4,7 @@
 {% block content %}
     {% if user.is_authenticated and not uuid %}
         <div class="pass">
-            <p class="pass_text">You don't have access key wos wrong</p>
+            <p class="pass_text">You don't have access key was wrong</p>
         </div>
     {% elif user.is_authenticated and not group %}
         <div class="pass">
@@ -37,9 +37,9 @@
                 <h3>Tasks</h3>
                 <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
                 <div class="tasks_buttons">
-                    <div class="tasks_button">
+                    <a href="{% url 'groups:new_task' id=group.id%}" class="tasks_button">
                         add task
-                    </div>
+                    </a>
                     <a href="{% url 'groups:all_tasks' key=group.uuid %}" class="tasks_button">
                         all tasks
                     </a>

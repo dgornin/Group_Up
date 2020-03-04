@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect
 from groupsapp.models import Group, Available, Task
 from django.urls import reverse
-from groupsapp.forms import GroupEditForm
+from groupsapp.forms import GroupEditForm, TaskEditForm
 
 # Create your views here.
 
@@ -93,7 +93,7 @@ def new_group(request: HttpRequest):
         group_form = GroupEditForm()
 
     context = {
-        'group_form': group_form
+        'group_form': group_form,
     }
 
     return render(request, 'groupsapp/new_group.html', context)
@@ -111,20 +111,40 @@ def task(request: HttpRequest, id: int, key: str):
 def all_tasks(request: HttpRequest, key: str):
     authenticated = False
     key_is_valid = False
+    user_is_valid = False
     tasks = None
     if request.user.is_authenticated:
         authenticated = True
         group_is = Group.objects.filter(uuid=key)
-        available = Available.objects.filter(user=request.user.id)
-        if group_is and available:
+        if group_is:
             key_is_valid = True
             group_is = get_object_or_404(Group, uuid=key)
-            tasks = Task.objects.filter(group=group_is.id)
+            available = Available.objects.filter(user=request.user.id, groups=group_is.id)
+            if available:
+                user_is_valid = True
+                tasks = Task.objects.filter(group=group_is.id)
 
     context = {
         'authenticated': authenticated,
         'key_is_valid': key_is_valid,
+        'user_is_valid': user_is_valid,
         'tasks': tasks,
     }
 
     return render(request, 'groupsapp/all_tasks.html', context)
+
+
+def new_task(request: HttpRequest, id: int):
+    if request.method == 'POST':
+        task_form = TaskEditForm(request.POST, request.FILES)
+        if task_form.is_valid():
+            task_form.save()
+            return HttpResponseRedirect(reverse('groups:index'))
+    else:
+        task_form = TaskEditForm()
+
+    context = {
+        'task_form': task_form,
+    }
+
+    return render(request, 'groupsapp/new_task.html', context)
