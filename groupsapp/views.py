@@ -111,16 +111,20 @@ def task(request: HttpRequest, id: int, key: str):
 def all_tasks(request: HttpRequest, key: str):
     authenticated = False
     key_is_valid = False
+    tasks = None
     if request.user.is_authenticated:
         authenticated = True
-        group_is = get_object_or_404(Group, uuid=key)
-        user_is = get_object_or_404(Available, groups=group_is.id, user=request.user.id)
-        if group_is and user_is:
+        group_is = Group.objects.filter(uuid=key)
+        available = Available.objects.filter(user=request.user.id)
+        if group_is and available:
             key_is_valid = True
+            group_is = get_object_or_404(Group, uuid=key)
+            tasks = Task.objects.filter(group=group_is.id)
 
     context = {
         'authenticated': authenticated,
         'key_is_valid': key_is_valid,
+        'tasks': tasks,
     }
 
     return render(request, 'groupsapp/all_tasks.html', context)

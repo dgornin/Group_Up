@@ -40,9 +40,9 @@
                     <div class="tasks_button">
                         add task
                     </div>
-                    <div class="tasks_button">
+                    <a href="{% url 'groups:all_tasks' key=group.uuid %}" class="tasks_button">
                         all tasks
-                    </div>
+                    </a>
                 </div>
                 <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
                 <div class="active_tasks">
