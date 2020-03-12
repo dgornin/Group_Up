@@ -103,6 +103,7 @@ def task(request: HttpRequest, id: int, key: str):
     authenticated = False
     user_is_valid = False
     group_is_valid = False
+    task_is_valid = False
     task_is = None
     if request.user.is_authenticated:
         authenticated = True
@@ -114,11 +115,13 @@ def task(request: HttpRequest, id: int, key: str):
             if available_user:
                 user_is_valid = True
                 task_is = Task.objects.filter(id=id, group=available_group.id)
-                if task:
+                if task_is:
+                    task_is_valid = True
                     task_is = get_object_or_404(Task, id=id, group=available_group.id)
 
     context = {
         'task': task_is,
+        'task_is_valid': task_is_valid,
         'authenticated': authenticated,
         'group_is_valid': group_is_valid,
         'user_is_valid': user_is_valid,
