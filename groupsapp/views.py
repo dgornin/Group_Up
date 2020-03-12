@@ -100,9 +100,28 @@ def new_group(request: HttpRequest):
 
 
 def task(request: HttpRequest, id: int, key: str):
+    authenticated = False
+    user_is_valid = False
+    group_is_valid = False
+    task = None
+    if request.user.is_authenticated:
+        authenticated = True
+        available_group = Group.objects.filter(uuid=key)
+        if available_group:
+            group_is_valid = True
+            available_group = get_object_or_404(Group, uuid=key)
+            available_user = Available.objects.filter(user=request.user.id, groups=available_group.id)
+            if available_user:
+                user_is_valid = True
+                task = Task.objects.filter(id=id, group=available_group.id)
+                if task:
+                    task = get_object_or_404(Task, id=id, group=available_group.id)
 
     context = {
-
+        'task': task,
+        'authenticated': authenticated,
+        'group_is_valid': group_is_valid,
+        'user_is_valid': user_is_valid,
     }
 
     return render(request, 'groupsapp/task.html', context)
@@ -113,6 +132,7 @@ def all_tasks(request: HttpRequest, key: str):
     key_is_valid = False
     user_is_valid = False
     tasks = None
+    group_is = None
     if request.user.is_authenticated:
         authenticated = True
         group_is = Group.objects.filter(uuid=key)
@@ -129,22 +149,34 @@ def all_tasks(request: HttpRequest, key: str):
         'key_is_valid': key_is_valid,
         'user_is_valid': user_is_valid,
         'tasks': tasks,
+        'group_is': group_is,
     }
 
     return render(request, 'groupsapp/all_tasks.html', context)
 
 
 def new_task(request: HttpRequest, id: int):
-    if request.method == 'POST':
-        task_form = TaskEditForm(request.POST, request.FILES)
-        if task_form.is_valid():
-            task_form.save()
-            return HttpResponseRedirect(reverse('groups:index'))
-    else:
-        task_form = TaskEditForm()
+    task_form = None
+    authenticated = False
+    user_is_valid = False
+    if request.user.is_authenticated:
+        authenticated = True
+        available = Available.objects.filter(user=request.user.id, groups=id)
+        if available:
+            user_is_valid = True
+            if request.method == 'POST':
+                task_form = TaskEditForm(request.POST, request.FILES)
+                if task_form.is_valid():
+                    task_form.group = id
+                    task_form.save()
+                    return HttpResponseRedirect(reverse('groups:index'))
+            else:
+                task_form = TaskEditForm(initial={'is_done': False, 'group': id})
 
     context = {
         'task_form': task_form,
+        'authenticated': authenticated,
+        'user_is_valid': user_is_valid,
     }
 
     return render(request, 'groupsapp/new_task.html', context)

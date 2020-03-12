@@ -7,7 +7,7 @@
                 all
                 {% for i in tasks %}
                     <ul>
-                        <li>{{ i.name }}</li>
+                        <li><a href="{% url 'groups:task' id=i.id key=group_is.uuid%}">{{ i.name }}</a></li>
                     </ul>
                 {% endfor %}
             {% elif not user_is_valid %}

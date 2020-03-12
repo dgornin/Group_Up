@@ -2,27 +2,35 @@
 {% load static %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <div class="auth_forms">
-            <div class="edit_form">
-                <h3>Create task</h3>
-                <form class="form-horizontal" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ task_form.as_p }}
-                    <div class="auth_submit_block">
-                        <p>
-                            <input class="auth_forms_submit_button" type="submit" value="Save">
-                        </p>
-                    </div>
-                </form>
+    {% if authenticated %}
+        {% if user_is_valid %}
+            <div class="auth_forms">
+                <div class="edit_form">
+                    <h3>Create task</h3>
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ task_form.as_p }}
+                        <div class="auth_submit_block">
+                            <p>
+                                <input class="auth_forms_submit_button" type="submit" value="Save">
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
+        {% else %}
+            <div class="pass">
+                <p class="pass_text">You don't have access to this group</p>
+            </div>
+        {% endif %}
     {% else %}
         <div class="pass">
-            <p class="pass_text">You must login or register to create groups</p>
-            <div style="display: flex; justify-content: center; margin-top: 20px">
-                <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
-                <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
+            <div class="pass">
+                <p class="pass_text">You must login or register to get access to group</p>
+                <div style="display: flex; justify-content: center; margin-top: 20px">
+                    <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
+                    <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
+                </div>
             </div>
         </div>
     {% endif %}

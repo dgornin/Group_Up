@@ -2,7 +2,30 @@
 {% load static %}
 
 {% block content %}
-    <div class="pass">
-        Task
-    </div>
+    {% if authenticated %}
+            {% if user_is_valid and group_is_valid %}
+                <div class="pass">
+                    Task is
+                    {{ task.name }}
+                </div>
+            {% elif not user_is_valid %}
+                <div class="pass">
+                    <p class="pass_text">You don't have access to this group</p>
+                </div>
+            {% else %}
+                <div class="pass">
+                    <p class="pass_text">You don't have access, key was wrong</p>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="pass">
+                <div class="pass">
+                    <p class="pass_text">You must login or register to get access to group</p>
+                    <div style="display: flex; justify-content: center; margin-top: 20px">
+                        <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
+                        <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 {% endblock %}
