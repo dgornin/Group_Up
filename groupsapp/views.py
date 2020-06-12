@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect
 from groupsapp.models import Group, Available, Task
 from django.urls import reverse
-from groupsapp.forms import GroupEditForm, TaskEditForm
+from groupsapp.forms import GroupAddForm, TaskEditForm, GroupEditForm
 
 # Create your views here.
 
@@ -80,7 +80,7 @@ def group(request: HttpRequest, id: int, key: str):
 
 def new_group(request: HttpRequest):
     if request.method == 'POST':
-        group_form = GroupEditForm(request.POST, request.FILES)
+        group_form = GroupAddForm(request.POST, request.FILES)
         if group_form.is_valid():
             data = group_form.cleaned_data.get("uuid")
             group_form.save()
@@ -90,7 +90,7 @@ def new_group(request: HttpRequest):
             new_available.save()
             return HttpResponseRedirect(reverse('groups:index'))
     else:
-        group_form = GroupEditForm()
+        group_form = GroupAddForm()
 
     context = {
         'group_form': group_form,
@@ -183,3 +183,41 @@ def new_task(request: HttpRequest, id: int):
     }
 
     return render(request, 'groupsapp/new_task.html', context)
+
+
+def edit_group(request: HttpRequest, id: int, key: str):
+    authenticated = False
+    group_form = None
+    key_is_valid = False
+    user_is_valid = False
+    uuid = None
+    group_id = None
+    if request.user.is_authenticated:
+        authenticated = True
+        available_user = Available.objects.filter(user=request.user.id, groups=id)
+        if available_user:
+            user_is_valid = True
+            available_key = Group.objects.filter(uuid=key)
+            if available_key:
+                uuid = available_key[0].uuid
+                group_id = available_key[0].id
+                key_is_valid = True
+                if request.method == 'POST':
+                    group_form = GroupEditForm(request.POST, instance=available_key[0])
+
+                    if group_form.is_valid():
+                        group_form.save()
+                        return HttpResponseRedirect(reverse('groups:index'))
+                else:
+                    group_form = GroupEditForm(instance=available_key[0])
+
+    context = {
+        'group_form': group_form,
+        'authenticated': authenticated,
+        'key_is_valid': key_is_valid,
+        'user_is_valid': user_is_valid,
+        'uuid': uuid,
+        'group_id': group_id,
+    }
+
+    return render(request, 'groupsapp/edit_group.html', context)

@@ -29,7 +29,7 @@
                 <div class="del_line"></div>
                 <div class="main_group_buttons">
                     <a href="{% url 'shear:index' id=group.id key=uuid%}" class="main_group_button">add user</a>
-                    <a href="" class="main_group_button">edit group</a>
+                    <a href="{% url 'groups:edit_group' id=group.id key=uuid%}" class="main_group_button">edit group</a>
                     <a href="{% url 'groups:remove_user' id=group.id key=uuid%}" class="main_group_button" style="color: #e53935">leave group</a>
                 </div>
             </div>
