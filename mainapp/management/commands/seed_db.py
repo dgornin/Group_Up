@@ -7,4 +7,3 @@ class Command(BaseCommand):
         CustomUser.objects.create_superuser(
             'dgornin', 'dgornin@gmail.com', '200329', age=20
         )
-
