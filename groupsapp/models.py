@@ -25,3 +25,12 @@ class Task(models.Model):
     name = models.CharField(verbose_name='task_name', max_length=60)
     description = models.TextField(verbose_name='description')
     is_done = models.BooleanField(verbose_name='is_done', default=False)
+
+
+class Permission(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    is_creator = models.BooleanField(verbose_name='is_creator', default=False)
+    is_admin = models.BooleanField(verbose_name='is_admin', default=False)
+    is_moderator = models.BooleanField(verbose_name='is_moderator', default=False)
+    add_datetime = models.DateTimeField(verbose_name='add_datetime', auto_now_add=True)

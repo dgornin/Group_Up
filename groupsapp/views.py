@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpRequest, HttpResponseRedirect
-from groupsapp.models import Group, Available, Task
+from groupsapp.models import Group, Available, Task, Permission
 from django.urls import reverse
 from groupsapp.forms import GroupAddForm, TaskEditForm, GroupEditForm
 
@@ -88,6 +88,8 @@ def new_group(request: HttpRequest):
             new_available = Available(user=request.user, groups=able)
             new_available.quantity += 1
             new_available.save()
+            new_permission = Permission(group=able, user=request.user, is_creator=True)
+            new_permission.save()
             return HttpResponseRedirect(reverse('groups:index'))
     else:
         group_form = GroupAddForm()
