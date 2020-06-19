@@ -20,6 +20,8 @@ def add_user(request: HttpRequest, id: int, key: str):
                 new_available = Available(user=request.user, groups=group)
                 new_available.quantity += 1
                 new_available.save()
+                new_permission = Permission(group=group, user=request.user)
+                new_permission.save()
 
     return HttpResponseRedirect(reverse('groups:index'))
 
@@ -52,6 +54,7 @@ def group(request: HttpRequest, id: int, key: str):
     # available_groups = get_object_or_404(Available, groups=id, user=request.user.id)
     uuid = True
     all_users = False
+    permission = None
     if request.user.is_authenticated:
         available_groups = Available.objects.filter(groups=id, user=request.user.id)
         all_users = Available.objects.filter(groups=id)
@@ -64,11 +67,13 @@ def group(request: HttpRequest, id: int, key: str):
                 uuid = False
             else:
                 uuid = group.uuid
+                permission = get_object_or_404(Permission, group=group, user=request.user.id)
     else:
         group = False
         available_groups = False
 
     context = {
+        'permission': permission,
         'group': group,
         'available': available_groups,
         'uuid': uuid,
@@ -168,15 +173,17 @@ def new_task(request: HttpRequest, id: int):
         authenticated = True
         available = Available.objects.filter(user=request.user.id, groups=id)
         if available:
-            user_is_valid = True
-            if request.method == 'POST':
-                task_form = TaskEditForm(request.POST, request.FILES)
-                if task_form.is_valid():
-                    task_form.group = id
-                    task_form.save()
-                    return HttpResponseRedirect(reverse('groups:index'))
-            else:
-                task_form = TaskEditForm(initial={'is_done': False, 'group': id})
+            permission = get_object_or_404(Permission, group=id, user=request.user.id)
+            if permission.is_admin or permission.is_moderator or permission.is_creator:
+                user_is_valid = True
+                if request.method == 'POST':
+                    task_form = TaskEditForm(request.POST, request.FILES)
+                    if task_form.is_valid():
+                        task_form.group = id
+                        task_form.save()
+                        return HttpResponseRedirect(reverse('groups:index'))
+                else:
+                    task_form = TaskEditForm(initial={'is_done': False, 'group': id})
 
     context = {
         'task_form': task_form,
@@ -198,20 +205,21 @@ def edit_group(request: HttpRequest, id: int, key: str):
         authenticated = True
         available_user = Available.objects.filter(user=request.user.id, groups=id)
         if available_user:
-            user_is_valid = True
-            available_key = Group.objects.filter(uuid=key)
-            if available_key:
-                uuid = available_key[0].uuid
-                group_id = available_key[0].id
-                key_is_valid = True
-                if request.method == 'POST':
-                    group_form = GroupEditForm(request.POST, instance=available_key[0])
-
-                    if group_form.is_valid():
-                        group_form.save()
-                        return HttpResponseRedirect(reverse('groups:index'))
-                else:
-                    group_form = GroupEditForm(instance=available_key[0])
+            permission = get_object_or_404(Permission, group=id, user=request.user.id)
+            if permission.is_admin or permission.is_creator:
+                user_is_valid = True
+                available_key = Group.objects.filter(uuid=key)
+                if available_key:
+                    uuid = available_key[0].uuid
+                    group_id = available_key[0].id
+                    key_is_valid = True
+                    if request.method == 'POST':
+                        group_form = GroupEditForm(request.POST, instance=available_key[0])
+                        if group_form.is_valid():
+                            group_form.save()
+                            return HttpResponseRedirect(reverse('groups:index'))
+                    else:
+                        group_form = GroupEditForm(instance=available_key[0])
 
     context = {
         'group_form': group_form,

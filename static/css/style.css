@@ -672,6 +672,25 @@ a {
     box-shadow: 0 0 5px 1px rgba(33, 33, 33, 0.35);
 }
 
+.tasks_button_un_active {
+    color: #212121;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 40px;
+    line-height: 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px 1px rgba(33, 33, 33, 0.35);
+    border-radius: 23px;
+    background-color: #d9dee1;
+    display: inline-block;
+    letter-spacing: 3.6px;
+    width: 150px;
+}
+
 .active_tasks {
     display: flex;
     flex-direction: column;

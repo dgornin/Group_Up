@@ -29,7 +29,9 @@
                 <div class="del_line"></div>
                 <div class="main_group_buttons">
                     <a href="{% url 'shear:index' id=group.id key=uuid%}" class="main_group_button">add user</a>
-                    <a href="{% url 'groups:edit_group' id=group.id key=uuid%}" class="main_group_button">edit group</a>
+                    {% if permission.is_admin or permission.is_creator %}
+                        <a href="{% url 'groups:edit_group' id=group.id key=uuid%}" class="main_group_button">edit group</a>
+                    {% endif %}
                     <a href="{% url 'groups:remove_user' id=group.id key=uuid%}" class="main_group_button" style="color: #e53935">leave group</a>
                 </div>
             </div>
@@ -37,9 +39,15 @@
                 <h3>Tasks</h3>
                 <div class="del_line" style="width: 450px; margin-bottom: 10px"></div>
                 <div class="tasks_buttons">
-                    <a href="{% url 'groups:new_task' id=group.id%}" class="tasks_button">
-                        add task
-                    </a>
+                    {% if permission.is_moderator or permission.is_admin or permission.is_creator %}
+                        <a href="{% url 'groups:new_task' id=group.id%}" class="tasks_button">
+                            add task
+                        </a>
+                    {% else %}
+                        <a class="tasks_button_un_active">
+                            add task
+                        </a>
+                    {% endif %}
                     <a href="{% url 'groups:all_tasks' key=group.uuid %}" class="tasks_button">
                         all tasks
                     </a>
