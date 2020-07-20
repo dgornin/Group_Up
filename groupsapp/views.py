@@ -231,3 +231,38 @@ def edit_group(request: HttpRequest, id: int, key: str):
     }
 
     return render(request, 'groupsapp/edit_group.html', context)
+
+
+def user_list(request: HttpRequest, id: int, key: str):
+    authenticated = False
+    group_form = None
+    key_is_valid = False
+    user_is_valid = False
+    uuid = None
+    group_id = None
+    user = None
+    users = None
+    if request.user.is_authenticated:
+        authenticated = True
+        available_user = Available.objects.filter(user=request.user.id, groups=id)
+        if available_user:
+            permission = get_object_or_404(Permission, group=id, user=request.user.id)
+            if permission.is_admin or permission.is_creator:
+                user_is_valid = True
+                available_key = Group.objects.filter(uuid=key)
+                if available_key:
+                    uuid = available_key[0].uuid
+                    group_id = available_key[0].id
+                    key_is_valid = True
+                    users = Permission.objects.filter(group=id)
+
+    context = {
+        'authenticated': authenticated,
+        'key_is_valid': key_is_valid,
+        'user_is_valid': user_is_valid,
+        'uuid': uuid,
+        'group_id': group_id,
+        'users': users,
+    }
+
+    return render(request, 'groupsapp/user_list.html', context)

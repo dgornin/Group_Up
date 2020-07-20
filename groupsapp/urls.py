@@ -14,4 +14,5 @@ urlpatterns = [
     path('all_tasks/<str:key>', controller.all_tasks, name='all_tasks'),
     path('new_task/<int:id>', controller.new_task, name='new_task'),
     path('edit_group/<int:id>/<str:key>', controller.edit_group, name='edit_group'),
+    path('user_list/<int:id>/<str:key>', controller.user_list, name='user_list'),
 ]

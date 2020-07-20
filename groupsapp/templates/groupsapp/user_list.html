@@ -1,0 +1,66 @@
+{% extends 'groupsapp/layout.html' %}
+{% load static %}
+
+{% block content %}
+    {% if authenticated %}
+        {% if key_is_valid %}
+            <div class="main_group">
+                <div class="user_list">
+                    <ul style="list-style-type: none">
+                        {% for i in users %}
+                            <a href="{% url 'auth:profile' id=i.user.id %}" class="user_card">
+                                <div style="margin: 10px; height: 100px; width: 310px">
+                                    <div style="display: flex">
+                                        <div class="user_card_photo"></div>
+                                        <div class="user_card_name">
+                                            <div class="user_card_first_name_block">
+                                                <p>{{ i.user.first_name }}</p>
+                                                {% if i.user.is_active %}
+                                                    <div class="user_card_online_dot"></div>
+                                                {% else %}
+                                                    <div class="user_card_offline_dot"></div>
+                                                {% endif %}
+                                            </div>
+                                            <div class="user_card_last_name_block">
+                                                <p>{{ i.user.last_name }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user_card_permission_name_block">
+                                        {% if i.is_creator %}
+                                            <p>Creator  (A.K.A. {{ i.user.username }})</p>
+                                        {% elif i.is_admin %}
+                                            <p>Admin  (A.K.A. {{ i.user.username }})</p>
+                                        {% elif i.is_moderator %}
+                                            <p>Moderator  (A.K.A. {{ i.user.username }})</p>
+                                        {% else %}
+                                            <p>User  (A.K.A. {{ i.user.username }})</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% elif  user_is_valid %}
+            <div class="pass">
+                <p class="pass_text">You don't have access key was wrong</p>
+            </div>
+        {% else %}
+            <div class="pass">
+                <p class="pass_text">You don't have access to this group</p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="pass">
+            <div class="pass">
+                <p class="pass_text">You must login or register to get access to group</p>
+                <div style="display: flex; justify-content: center; margin-top: 20px">
+                    <a href="{% url 'auth:login' %}" class="pass_button" style="margin-right: 20px">Login</a>
+                    <a href="{% url 'auth:register' %}" class="pass_button">Register</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

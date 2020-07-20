@@ -1038,3 +1038,84 @@ a {
     letter-spacing: 1px;
     display: block;
 }
+
+.user_list {
+    margin: 20px;
+    width: 1126px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.user_card {
+    display: inline-block;
+    height: 120px;
+    width: 330px;
+    background-color: #f7f7f7;
+    margin: 20px;
+}
+
+.user_card:hover {
+    background-color: #d9dee1;
+}
+
+.user_card_photo {
+    height: 70px;
+    width: 70px;
+    background-color: #6c6c6c;
+}
+
+.user_card_name {
+    height: 70px;
+    margin-left: 20px;
+    width: 190px;
+}
+
+.user_card_first_name_block {
+    display: flex;
+    height: 35px;
+    color: #212121;
+    font-size: 26px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.user_card_last_name_block {
+    display: flex;
+    height: 35px;
+    color: #212121;
+    font-size: 26px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.user_card_online_dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    background-color: green;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+.user_card_offline_dot {
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    background-color: red;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+.user_card_permission_name_block {
+    margin-top: 5px;
+    display: flex;
+    color: #343434;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.user_card_permission_up_down {
+    height: 70px;
+}

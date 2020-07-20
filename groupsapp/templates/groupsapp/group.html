@@ -29,6 +29,7 @@
                 <div class="del_line"></div>
                 <div class="main_group_buttons">
                     <a href="{% url 'shear:index' id=group.id key=uuid%}" class="main_group_button">add user</a>
+                    <a href="{% url 'groups:user_list' id=group.id key=uuid %}" class="main_group_button">user list</a>
                     {% if permission.is_admin or permission.is_creator %}
                         <a href="{% url 'groups:edit_group' id=group.id key=uuid%}" class="main_group_button">edit group</a>
                     {% endif %}
