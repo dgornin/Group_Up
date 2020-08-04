@@ -266,3 +266,36 @@ def user_list(request: HttpRequest, id: int, key: str):
     }
 
     return render(request, 'groupsapp/user_list.html', context)
+
+
+def edit_permission(request: HttpRequest, id: int, user_id: int, permission: str):
+    if request.user.is_authenticated:
+        user_permission = get_object_or_404(Permission, group=id, user=request.user.id)
+        edit_user = get_object_or_404(Permission, group=id, user=user_id)
+        if user_permission.is_admin:
+            if permission == 'moderator':
+                if not edit_user.is_admin and not edit_user.is_creator:
+                    edit_user.is_admin = False
+                    edit_user.is_moderator = True
+                    edit_user.save()
+            if permission == 'user':
+                if not edit_user.is_admin and not edit_user.is_creator:
+                    edit_user.is_admin = False
+                    edit_user.is_moderator = False
+                    edit_user.save()
+        if user_permission.is_creator and not edit_user.is_creator:
+            if permission == 'admin':
+                edit_user.is_admin = True
+                edit_user.is_moderator = False
+                edit_user.save()
+            if permission == 'moderator':
+                edit_user.is_admin = False
+                edit_user.is_moderator = True
+                edit_user.save()
+            if permission == 'user':
+                edit_user.is_admin = False
+                edit_user.is_moderator = False
+                edit_user.save()
+
+    # return HttpResponseRedirect(reverse('groups:user_list'))
+    return HttpResponseRedirect(reverse('groups:index'))
