@@ -40,7 +40,11 @@
             {% else %}
             <div class="profile_buttons_block">
                 {% if user.is_authenticated %}
-                    <a href="" class="profile_button">Subscribe</a>
+                    {% if user_is_subscribe %}
+                        <a href="{% url 'authapp:del_sub' id=page_user.id %}" class="profile_button">Unsubscribe</a>
+                    {% else %}
+                        <a href="{% url 'authapp:add_sub' id=page_user.id %}" class="profile_button">Subscribe</a>
+                    {% endif %}
                     <a href="" class="profile_button">Write</a>
                 {% endif %}
                 <a href="" class="profile_button">Shear</a>

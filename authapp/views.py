@@ -68,13 +68,18 @@ def edit(request: HttpRequest):
 
 def profile(request: HttpRequest, id: int):
     page_user = CustomUser.objects.filter(id=id)
+    user_is_subscribe = False
     if page_user:
         page_user = get_object_or_404(CustomUser, id=id)
         user_is_exists = True
+        subscribe = UserSubscribe.objects.filter(user=request.user.id, subscribe=page_user.id)
+        if subscribe:
+            user_is_subscribe = True
     else:
         user_is_exists = False
 
     context = {
+        'user_is_subscribe': user_is_subscribe,
         'user_is_exists': user_is_exists,
         'page_id': id,
         'page_user': page_user,
@@ -86,9 +91,20 @@ def profile(request: HttpRequest, id: int):
 def add_subscribe(request: HttpRequest, id: int):
     if request.user.is_authenticated:
         id_sub_user = get_object_or_404(CustomUser, id=id)
-        subscriber = UserSubscribe(user=request.user.id, subscribe=id_sub_user.id)
-        subscriber.save()
+        is_exist = UserSubscribe.objects.filter(user=request.user.id, subscribe=id_sub_user.id)
+        if not is_exist:
+            subscriber = UserSubscribe(user=request.user, subscribe=id_sub_user)
+            subscriber.save()
 
     return HttpResponseRedirect(reverse('mainapp:index'))
 
 
+def del_subscribe(request: HttpRequest, id: int):
+    if request.user.is_authenticated:
+        id_sub_user = get_object_or_404(CustomUser, id=id)
+        is_exist = UserSubscribe.objects.filter(user=request.user.id, subscribe=id_sub_user.id)
+        if is_exist:
+            subscribe = get_object_or_404(UserSubscribe, user=request.user.id, subscribe=id_sub_user.id)
+            subscribe.delete()
+
+    return HttpResponseRedirect(reverse('mainapp:index'))
