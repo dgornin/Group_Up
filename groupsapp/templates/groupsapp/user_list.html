@@ -26,9 +26,11 @@
                                             </div>
                                         </div>
                                         <div class="edit_permission_block1">
-                                            {% if permission.is_admin or permission.is_creator %}
-                                                <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='admin' %}" class="edit_permission_button" style="margin-bottom: 3px">A</a>
-                                                <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='moderator' %}" class="edit_permission_button">M</a>
+                                            {% if not i.user.id is request.user.id %}
+                                                {% if permission.is_admin or permission.is_creator %}
+                                                    <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='admin' %}" class="edit_permission_button" style="margin-bottom: 3px">A</a>
+                                                    <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='moderator' %}" class="edit_permission_button">M</a>
+                                                {% endif %}
                                             {% endif %}
                                         </div>
                                     </div>
@@ -45,9 +47,11 @@
                                         {% endif %}
                                     </div>
                                         <div class="edit_permission_block2">
+                                        {% if not i.user.id is request.user.id %}
                                             {% if permission.is_admin or permission.is_creator %}
                                             <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='user' %}" class="edit_permission_button">U</a>
                                             {% endif %}
+                                        {% endif %}
                                         </div>
                                     </div>
                                 </div>
