@@ -13,6 +13,9 @@ class GroupAddForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
+            if field_name == 'uuid':
+                field.widget = forms.HiddenInput()
+
 
 class TaskEditForm(forms.ModelForm):
     class Meta:
@@ -24,6 +27,9 @@ class TaskEditForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
+
+            if field_name == 'group':
+                field.widget = forms.HiddenInput()
 
 
 class GroupEditForm(forms.ModelForm):
