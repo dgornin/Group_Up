@@ -1055,10 +1055,6 @@ a {
     margin: 20px;
 }
 
-.user_card:hover {
-    background-color: #d9dee1;
-}
-
 .user_card_photo {
     height: 70px;
     width: 70px;
@@ -1114,8 +1110,42 @@ a {
     font-size: 20px;
     letter-spacing: 1px;
     font-weight: 500;
+    width: 280px;
 }
 
 .user_card_permission_up_down {
     height: 70px;
+}
+
+.edit_permission_block1 {
+    width: 30px;
+    height: 70px;
+}
+
+.edit_permission_block2 {
+    width: 30px;
+    height: 30px;
+}
+
+.edit_permission_button {
+    display: block;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    color: #212121;
+    border: 1px solid #212121;
+}
+
+.edit_permission_button:hover {
+    background-color: #d9dee1;
+}
+
+.user_card_permission_name_a {
+    color: #343434;
+}
+
+.user_card_permission_name_a:hover {
+    color: #212121;
 }

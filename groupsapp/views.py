@@ -242,12 +242,13 @@ def user_list(request: HttpRequest, id: int, key: str):
     group_id = None
     user = None
     users = None
+    permission = None
     if request.user.is_authenticated:
         authenticated = True
         available_user = Available.objects.filter(user=request.user.id, groups=id)
         if available_user:
             permission = get_object_or_404(Permission, group=id, user=request.user.id)
-            if permission.is_admin or permission.is_creator:
+            if permission:
                 user_is_valid = True
                 available_key = Group.objects.filter(uuid=key)
                 if available_key:
@@ -263,6 +264,7 @@ def user_list(request: HttpRequest, id: int, key: str):
         'uuid': uuid,
         'group_id': group_id,
         'users': users,
+        'permission': permission,
     }
 
     return render(request, 'groupsapp/user_list.html', context)

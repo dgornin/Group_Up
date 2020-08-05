@@ -8,7 +8,7 @@
                 <div class="user_list">
                     <ul style="list-style-type: none">
                         {% for i in users %}
-                            <a href="{% url 'auth:profile' id=i.user.id %}" class="user_card">
+                            <div class="user_card">
                                 <div style="margin: 10px; height: 100px; width: 310px">
                                     <div style="display: flex">
                                         <div class="user_card_photo"></div>
@@ -25,20 +25,33 @@
                                                 <p>{{ i.user.last_name }}</p>
                                             </div>
                                         </div>
+                                        <div class="edit_permission_block1">
+                                            {% if permission.is_admin or permission.is_creator %}
+                                                <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='admin' %}" class="edit_permission_button" style="margin-bottom: 3px">A</a>
+                                                <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='moderator' %}" class="edit_permission_button">M</a>
+                                            {% endif %}
+                                        </div>
                                     </div>
+                                    <div style="display: flex">
                                     <div class="user_card_permission_name_block">
                                         {% if i.is_creator %}
-                                            <p>Creator  (A.K.A. {{ i.user.username }})</p>
+                                            <a class="user_card_permission_name_a" href="{% url 'auth:profile' id=i.user.id %}">Creator  (A.K.A. {{ i.user.username }})</a>
                                         {% elif i.is_admin %}
-                                            <p>Admin  (A.K.A. {{ i.user.username }})</p>
+                                            <a class="user_card_permission_name_a" href="{% url 'auth:profile' id=i.user.id %}">Admin  (A.K.A. {{ i.user.username }})</a>
                                         {% elif i.is_moderator %}
-                                            <p>Moderator  (A.K.A. {{ i.user.username }})</p>
+                                            <a class="user_card_permission_name_a" href="{% url 'auth:profile' id=i.user.id %}">Moderator  (A.K.A. {{ i.user.username }})</a>
                                         {% else %}
-                                            <p>User  (A.K.A. {{ i.user.username }})</p>
+                                            <a class="user_card_permission_name_a" href="{% url 'auth:profile' id=i.user.id %}">User  (A.K.A. {{ i.user.username }})</a>
                                         {% endif %}
                                     </div>
+                                        <div class="edit_permission_block2">
+                                            {% if permission.is_admin or permission.is_creator %}
+                                            <a href="{% url 'groups:edit_permission' id=group_id user_id=i.user.id permission='user' %}" class="edit_permission_button">U</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
+                            </div>
                         {% endfor %}
                     </ul>
                 </div>
