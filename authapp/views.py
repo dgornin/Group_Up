@@ -96,7 +96,7 @@ def add_subscribe(request: HttpRequest, id: int):
             subscriber = UserSubscribe(user=request.user, subscribe=id_sub_user)
             subscriber.save()
 
-    return HttpResponseRedirect(reverse('mainapp:index'))
+    return HttpResponseRedirect(reverse('auth:profile', args=[id]))
 
 
 def del_subscribe(request: HttpRequest, id: int):
@@ -107,4 +107,4 @@ def del_subscribe(request: HttpRequest, id: int):
             subscribe = get_object_or_404(UserSubscribe, user=request.user.id, subscribe=id_sub_user.id)
             subscribe.delete()
 
-    return HttpResponseRedirect(reverse('mainapp:index'))
+    return HttpResponseRedirect(reverse('auth:profile', args=[id]))

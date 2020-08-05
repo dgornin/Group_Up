@@ -8,6 +8,7 @@ from groupsapp.forms import GroupAddForm, TaskEditForm, GroupEditForm
 
 
 def add_user(request: HttpRequest, id: int, key: str):
+    group = None
     if request.user.is_authenticated:
         group = get_object_or_404(Group, pk=id)
 
@@ -23,7 +24,7 @@ def add_user(request: HttpRequest, id: int, key: str):
                 new_permission = Permission(group=group, user=request.user)
                 new_permission.save()
 
-    return HttpResponseRedirect(reverse('groups:index'))
+    return HttpResponseRedirect(reverse('groups:group', args=[group.id, group.uuid]))
 
 
 def remove_user(request: HttpRequest, id: int, key: str):
@@ -217,7 +218,7 @@ def edit_group(request: HttpRequest, id: int, key: str):
                         group_form = GroupEditForm(request.POST, instance=available_key[0])
                         if group_form.is_valid():
                             group_form.save()
-                            return HttpResponseRedirect(reverse('groups:index'))
+                            return HttpResponseRedirect(reverse('groups:group', args=[group_id, uuid]))
                     else:
                         group_form = GroupEditForm(instance=available_key[0])
 
@@ -271,9 +272,11 @@ def user_list(request: HttpRequest, id: int, key: str):
 
 
 def edit_permission(request: HttpRequest, id: int, user_id: int, permission: str):
+    cur_group = None
     if request.user.is_authenticated:
         user_permission = get_object_or_404(Permission, group=id, user=request.user.id)
         edit_user = get_object_or_404(Permission, group=id, user=user_id)
+        cur_group = get_object_or_404(Group, id=id)
         if user_permission.is_admin:
             if permission == 'moderator':
                 if not edit_user.is_admin and not edit_user.is_creator:
@@ -300,4 +303,4 @@ def edit_permission(request: HttpRequest, id: int, user_id: int, permission: str
                 edit_user.save()
 
     # return HttpResponseRedirect(reverse('groups:user_list'))
-    return HttpResponseRedirect(reverse('groups:index'))
+    return HttpResponseRedirect(reverse('groups:user_list', args=[cur_group.id, cur_group.uuid]))
