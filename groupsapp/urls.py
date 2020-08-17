@@ -16,4 +16,5 @@ urlpatterns = [
     path('edit_group/<int:id>/<str:key>', controller.edit_group, name='edit_group'),
     path('user_list/<int:id>/<str:key>', controller.user_list, name='user_list'),
     path('edit_permission/<int:id>/<int:user_id>/<str:permission>', controller.edit_permission, name='edit_permission'),
+    path('edit_task_status/<int:id>/<str:key>/<str:status>', controller.edit_task_status, name='edit_task_status'),
 ]

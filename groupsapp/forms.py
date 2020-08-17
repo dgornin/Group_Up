@@ -28,7 +28,7 @@ class TaskEditForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
-            if field_name == 'group':
+            if field_name == 'group' or field_name == 'is_done':
                 field.widget = forms.HiddenInput()
 
 

@@ -182,7 +182,7 @@ def new_task(request: HttpRequest, id: int):
                     if task_form.is_valid():
                         task_form.group = id
                         task_form.save()
-                        return HttpResponseRedirect(reverse('groups:index'))
+                        return HttpResponseRedirect(reverse('groups:all_tasks', args=[permission.group.uuid]))
                 else:
                     task_form = TaskEditForm(initial={'is_done': False, 'group': id})
 
@@ -304,3 +304,34 @@ def edit_permission(request: HttpRequest, id: int, user_id: int, permission: str
 
     # return HttpResponseRedirect(reverse('groups:user_list'))
     return HttpResponseRedirect(reverse('groups:user_list', args=[cur_group.id, cur_group.uuid]))
+
+
+def edit_task_status(request: HttpRequest, id: int, key: str, status: str):
+    authenticated = False
+    key_is_valid = False
+    user_is_valid = False
+    tasks = None
+    group_is = None
+    task_is = None
+    if request.user.is_authenticated:
+        authenticated = True
+        group_is = Group.objects.filter(uuid=key)
+        if group_is:
+            key_is_valid = True
+            group_is = get_object_or_404(Group, uuid=key)
+            available = Available.objects.filter(user=request.user.id, groups=group_is.id)
+            if available:
+                user_is_valid = True
+                tasks = Task.objects.filter(group=group_is.id)
+                task_is = Task.objects.filter(id=id, group=group_is.id)
+                if task_is:
+                    task_is_valid = True
+                    task_is = get_object_or_404(Task, id=id, group=group_is.id)
+                    if status == 'done':
+                        task_is.is_done = True
+                        task_is.save()
+                    if status == 'undone':
+                        task_is.is_done = False
+                        task_is.save()
+
+    return HttpResponseRedirect(reverse('groups:all_tasks', args=[group_is.uuid]))

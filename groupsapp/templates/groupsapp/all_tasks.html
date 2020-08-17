@@ -4,12 +4,34 @@
 {% block content %}
         {% if authenticated %}
             {% if key_is_valid and user_is_valid %}
-                all
-                {% for i in tasks %}
-                    <ul>
-                        <li><a href="{% url 'groups:task' id=i.id key=group_is.uuid%}">{{ i.name }}</a></li>
+                <div class="main_group">
+                    <div class="user_list">
+                    <ul style="list-style-type: none">
+                        {% for i in tasks %}
+                            <div class="user_card">
+                                <div style="margin: 10px; height: 100px; width: 310px">
+                                    <div class="all_task_name">
+                                        <a style="color: #212121;" href="{% url 'groups:task' id=i.id key=group_is.uuid %}">{{ i.name }}</a>
+                                    </div>
+                                    <div class="all_task_status">
+                                        {% if i.is_done %}
+                                            <a style="color: #212121;" href="{% url 'groups:task' id=i.id key=group_is.uuid %}">Status: is done</a>
+                                            <div class="all_task_status_done_dot"></div>
+                                        {% else %}
+                                             <a style="color: #212121;" href="{% url 'groups:task' id=i.id key=group_is.uuid %}">Status: is undone</a>
+                                            <div class="all_task_status_undone_dot"></div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="all_task_edit_status_block">
+                                        <a class="all_task_edit_status_button" href="">undone</a>
+                                        <a class="all_task_edit_status_button" href="">done</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </ul>
-                {% endfor %}
+                    </div>
+                </div>
             {% elif not user_is_valid %}
                 <div class="pass">
                     <p class="pass_text">You don't have access to this group</p>
