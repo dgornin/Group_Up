@@ -17,7 +17,15 @@
             <div class="profile_subscribers_block">
                 <p class="profile_subscribers_text">Subscribers:</p>
                 <div class="profile_subscribers">
-
+                    {% for i in all_subs %}
+                        <a class="profile_each_sub" href="{% url 'auth:profile' id=i.user.id %}">
+                            <div class="profile_each_sub_photo"></div>
+                            <div style="display: flex; flex-direction: column">
+                                <p class="profile_each_sub_info">{{ i.user.first_name }}</p>
+                                <p class="profile_each_sub_info">{{ i.user.last_name }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>

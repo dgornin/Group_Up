@@ -25,13 +25,13 @@
         <a href="{% url 'index' %}"><img class="logo" src="{% static 'img/logo.svg' %}" alt="logo"></a>
         <ul class="menu">
             <li class="menu-list">
-                <a href="{% url 'index' %}" class="menu-link menu-link-active">Home</a>
+                <a href="{% url 'index' %}" class="menu-link {{ index_isActive }}">Home</a>
             </li>
             <li class="menu-list">
                 <a href="{% url 'groups:index' %}" class="menu-link">Groups</a>
             </li>
             <li class="menu-list">
-                <a href="{% url 'contact' %}" class="menu-link">Contact</a>
+                <a href="{% url 'contact' %}" class="menu-link {{ contact_isActive }}">Contact</a>
             </li>
             {% if user.is_authenticated %}
                 <li class="menu-list">

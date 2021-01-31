@@ -6,7 +6,11 @@ from .models import User
 
 
 def index(request):
-    return render(request, 'mainapp/index.html')
+    context = {
+        'index_isActive': "menu-link-active",
+        'contact_isActive': "",
+    }
+    return render(request, 'mainapp/index.html', context)
 
 
 def dev(request):
@@ -14,4 +18,8 @@ def dev(request):
 
 
 def contact(request):
-    return render(request, 'mainapp/contact.html')
+    context = {
+        'index_isActive': "",
+        'contact_isActive': "menu-link-active",
+    }
+    return render(request, 'mainapp/contact.html', context)
